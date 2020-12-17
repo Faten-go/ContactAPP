@@ -1,6 +1,8 @@
+const Contact = require("../models/Contact");
+
 exports.postContact = async (req,res)=> {
     try{
-       const newContact =new contact({...req.body });
+       const newContact =new Contact(req.body);
        if(!req.body.email){
            res.status(400).send({message:"email is required check again"});
        return;
@@ -10,10 +12,11 @@ exports.postContact = async (req,res)=> {
         res.status(400).send({message:"user already exist"});
     return;
     }
+
        const response = await newContact.save();
-       res.send({response:response, message: "user is saved"});
+        res.send({response:response, message: "user is saved"});
     }catch (error) {
-   res.status(400).send({message:"canot save it"});
+        res.status(500).send({message:"cannot save the user"});
     }
        
    };

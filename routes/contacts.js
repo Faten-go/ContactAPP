@@ -19,7 +19,7 @@ const controllers=require("../controllers/contact.controllers")
 //@desc post a contact
 //@path: http://localhost:5000/api/contact/
 //parms Body
-router.post("/",controllers.postContact );
+router.post("/name",controllers.postContact );
 
 //@methode GET
 //@dsc GET all contacts
@@ -27,7 +27,7 @@ router.post("/",controllers.postContact );
 router.get("/", async(req, res)=>{
     try{
         const result=await Contact.find()
-        res.send({response:result, message:"geting contacts sucessfully"})
+        res.send({response:result, message:"getting contacts sucessfully"})
     }catch (error){
         res.status(400).send({message:"can not get contacts"})
 
@@ -41,7 +41,7 @@ router.get("/", async(req, res)=>{
 router.get("/:id",async(req, res)=>{
     try{
 const result=await Contact.findOne({_id:req.params.id})
-res.send({response:result, message:"geting contacts sucessfully"});
+res.send({response:result, message:"contact with id successfully retrieved"});
     }catch (error){
         res.status(400).send({message:"can not get contact with this id"});
 
@@ -56,9 +56,11 @@ router.delete("/:id",async(req, res)=>{
     try{
 const result=await Contact.deleteOne({_id:req.params.id});
 
-result.n?res.send({response:" user deleted"}):res.send("there is no user with this id")
+result.n
+    ?res.send({response:" user successfully deleted"})
+    :res.send("there is no user with this id")
     }catch (error){
-        res.send("not deleted");
+        res.send("could not be deleted");
 
     }
 });
@@ -78,9 +80,6 @@ result.nModified? res.send({message:"user update"}):res.send({message:"contacr a
 
     }
 });
-
-
-
 
 
 module.exports = router;

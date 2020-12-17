@@ -11,10 +11,10 @@ app.use(express.json());
 app.use("/api/contact",require("./routes/contacts"));
 const PORT =process.env.PORT;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
 
 app.listen(PORT, (err) => {
-  err ? console.error(err) : console.log(`Example app listening at http://localhost:${PORT}`)
+  err ? console.error(err) : console.log(`App is working at http://localhost:${PORT}`)
 })

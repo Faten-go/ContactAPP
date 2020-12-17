@@ -7,11 +7,10 @@ const connectDB= async()=>{
             useUnifiedTopology:true,
          });
    
-        console.log("database connected");
+        console.log("database connection established");
     } catch (error) {
         console.log(`db can not connect ${error}`);
     }
 
-    
 };
 module.exports= connectDB
